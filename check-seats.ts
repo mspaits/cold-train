@@ -1,5 +1,6 @@
 import { chromium } from "playwright";
 import fs from "fs";
+import "dotenv/config";
 
 type Result = "available" | "sold_out" | "unknown";
 
