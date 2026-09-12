@@ -1,0 +1,63 @@
+# Save this file as: .github/workflows/check-seats.yml in your repo
+
+name: Check Aurora Winter Train Seats
+
+on:
+  schedule:
+    - cron: "0 * * * *" # every hour — adjust to taste (GitHub cron is UTC)
+  workflow_dispatch:
+    inputs:
+      day:
+        description: "Day of month to check"
+        default: "26"
+      month:
+        description: "Month to check (1-12)"
+        default: "12"
+      year:
+        description: "Year to check"
+        default: "2026"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Run seat check
+        id: check
+        env:
+          CHECK_DAY: ${{ github.event.inputs.day || '26' }}
+          CHECK_MONTH: ${{ github.event.inputs.month || '12' }}
+          CHECK_YEAR: ${{ github.event.inputs.year || '2026' }}
+        run: pnpm exec tsx check-seats.ts
+
+      - name: Email me if seats are available
+        if: steps.check.outputs.result == 'available'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "🚂 Aurora Winter Train seats available!"
+          to: your-email@example.com
+          from: Train Seat Checker
+          body: |
+            Seats appear available for the Aurora Winter Train
+            (Anchorage -> Fairbanks) on the checked date.
+            Book now: https://www.alaskarailroad.com/ride-a-train/buy-tickets
