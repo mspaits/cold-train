@@ -1,0 +1,25 @@
+# Dependencies and local pnpm store
+node_modules/
+.pnpm-store/
+
+# TypeScript build output
+dist/
+*.tsbuildinfo
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Playwright artifacts
+test-results/
+playwright-report/
+playwright/.cache/
+playwright/.auth/
+
+# OS files
+.DS_Store
+Thumbs.db
