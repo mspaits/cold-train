@@ -4,7 +4,7 @@ name: Check Aurora Winter Train Seats
 
 on:
   schedule:
-    - cron: "0 * * * *" # every hour — adjust to taste (GitHub cron is UTC)
+    - cron: "26 * * * *" # every hour — adjust to taste (GitHub cron is UTC)
   workflow_dispatch:
     inputs:
       day:
