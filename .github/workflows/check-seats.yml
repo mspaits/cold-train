@@ -9,7 +9,7 @@ on:
     inputs:
       day:
         description: "Day of month to check"
-        default: "26"
+        default: "12"
       month:
         description: "Month to check (1-12)"
         default: "12"
