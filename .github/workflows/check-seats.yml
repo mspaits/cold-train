@@ -9,7 +9,7 @@ on:
     inputs:
       day:
         description: "Day of month to check"
-        default: "12"
+        default: "26"
       month:
         description: "Month to check (1-12)"
         default: "12"
@@ -41,7 +41,7 @@ jobs:
       - name: Run seat check
         id: check
         env:
-          CHECK_DAY: ${{ github.event.inputs.day || '26' }}
+          CHECK_DAY: ${{ github.event.inputs.day || '12' }}
           CHECK_MONTH: ${{ github.event.inputs.month || '12' }}
           CHECK_YEAR: ${{ github.event.inputs.year || '2026' }}
         run: pnpm exec tsx check-seats.ts
