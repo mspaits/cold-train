@@ -55,7 +55,7 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "🚂 Aurora Winter Train seats available!"
-          to: mspaits@gmail.com
+          to: mspaits@gmail.com, jenruno@gmail.com
           from: Train Seat Checker
           body: |
             Seats appear available for the Aurora Winter Train
