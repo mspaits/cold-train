@@ -41,7 +41,7 @@ jobs:
       - name: Run seat check
         id: check
         env:
-          CHECK_DAY: ${{ github.event.inputs.day || '12' }}
+          CHECK_DAY: ${{ github.event.inputs.day || '26' }}
           CHECK_MONTH: ${{ github.event.inputs.month || '12' }}
           CHECK_YEAR: ${{ github.event.inputs.year || '2026' }}
         run: pnpm exec tsx check-seats.ts
@@ -55,7 +55,7 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "🚂 Aurora Winter Train seats available!"
-          to: mspaits@gmail.com
+          to: mspaits@gmail.com, jenruno@gmail.com
           from: Train Seat Checker
           body: |
             Seats appear available for the Aurora Winter Train
