@@ -41,7 +41,7 @@ jobs:
       - name: Run seat check
         id: check
         env:
-          CHECK_DAY: ${{ github.event.inputs.day || '12' }}
+          CHECK_DAY: ${{ github.event.inputs.day || '26' }}
           CHECK_MONTH: ${{ github.event.inputs.month || '12' }}
           CHECK_YEAR: ${{ github.event.inputs.year || '2026' }}
         run: pnpm exec tsx check-seats.ts
