@@ -28,6 +28,8 @@ async function checkSeats({ day, month, year }: CheckTarget): Promise<Result> {
         await page.locator("#edit-service-type-id").selectOption("53"); // Aurora Winter Train
         await page.getByLabel("From").selectOption("6002"); // Anchorage
         await page.getByLabel("To", { exact: true }).selectOption("6013"); // Fairbanks
+        await page.getByLabel('Adult (12+)').selectOption('2');
+        await page.getByLabel('Child (2-11)').selectOption('1');
 
         await page.getByRole("textbox", { name: "Depart" }).click();
 
